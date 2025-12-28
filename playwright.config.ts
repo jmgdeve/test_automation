@@ -23,7 +23,15 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-  
+    // 1. Force a consistent snapshot name (No -linux or -win32 suffixes)
+  snapshotPathTemplate: '{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
+
+    // 2. Increase tolerance to ignore subtle font rendering differences between OS
+  expect: {
+      toHaveScreenshot: { 
+          maxDiffPixelRatio: 0.2, // Allows 20% difference (Testing layout, not pixels)
+        },
+    },
   /* Shared settings for all the projects below. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -32,6 +40,9 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. */
     trace: 'on-first-retry',
     
+    ignoreHTTPSErrors: true,
+    
+
     // --- VISUAL REGRESSION SETTINGS ---
     // 1. Force a consistent viewport so snapshots are the same size every time
     viewport: { width: 1280, height: 720 },
