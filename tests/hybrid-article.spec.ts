@@ -1,12 +1,12 @@
 import { test } from '@playwright/test';
 import { APIController } from '../utils/APIController';
-import { HomePage } from '../pages/HomePage';
+import { HomePage } from '../pages/HomePageConduit';
 import { generateArticle, testUser } from '../utils/testData';
 
-
-
-
-
+/**
+ * This is my Hybrid Test implementation.
+ * I'm combining API calls for speed (setup/teardown) with UI actions for user verification.
+ */
 test.describe('Hybrid E-Commerce Tests', () => {
     let USER = testUser;
     let apiController: APIController;
@@ -15,6 +15,7 @@ test.describe('Hybrid E-Commerce Tests', () => {
     let articleSlug: string;
     let articleData: any;
 
+    // Before all tests, get auth token
     test.beforeAll(async ({ request }) => {
         const apiController = new APIController(request);
         // 1. Get Token via API

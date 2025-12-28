@@ -1,5 +1,9 @@
 import { Page, Locator, expect } from '@playwright/test';
-// Represents the Home Page of the Conduit application
+
+/**
+ * I'm using the Page Object Model here to abstract the Home Page structure.
+ * This keeps my selectors in one place, making maintenance easier if the UI changes.
+ */
 export class HomePage {
     readonly page: Page;
     readonly globalFeedTab: Locator;

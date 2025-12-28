@@ -1,5 +1,10 @@
 import { APIRequestContext } from '@playwright/test';
 
+/**
+ * I created this controller to handle all backend interactions.
+ * This allows me to set up test state (like creating users or articles) 
+ * much faster than doing it through the UI.
+ */
 export class APIController {
     private request: APIRequestContext;
     private baseURL: string = 'https://conduit-api.bondaracademy.com/api';
