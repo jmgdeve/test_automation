@@ -24,7 +24,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
     // 1. Force a consistent snapshot name (No -linux or -win32 suffixes)
-  snapshotPathTemplate: '{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
+  snapshotPathTemplate: './tests/{testFileName}-snapshots/{arg}{ext}',
 
     // 2. Increase tolerance to ignore subtle font rendering differences between OS
   expect: {
